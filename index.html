@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accès aux terrains de Choisy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background-color: #f5f5f5;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+    #resultat {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 22px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Accès aux terrains de Choisy</h1>
+  <p>Sélectionnez un terrain :</p>
+
+  <!-- Menu déroulant -->
+  <select id="terrain">
+    <option value="">-- Choisir un terrain --</option>
+    <option value="1A">Terrain 1A</option>
+    <option value="2A">Terrain 2A</option>
+    <option value="2B">Terrain 2B</option>
+    <option value="21A">Terrain 21A</option>
+    <option value="21B">Terrain 21B</option>
+    <option value="23A">Terrain 23A</option>
+    <option value="23B">Terrain 23B</option>
+    <!-- Tu pourras ajouter d'autres terrains ici -->
+  </select>
+
+  <button onclick="verifier()">Passerelle ou pas passerelle ?</button>
+
+  <div id="resultat"></div>
+
+  <script>
+    // Dictionnaire des terrains et de leur accès
+    const terrains = {
+      "1A": "Passerelle",
+      "2A": "Passerelle",
+      "2B": "Passerelle",
+      "21A": "Passerelle",
+      "21B": "Passerelle",
+      "23A": "Pas passerelle",
+      "23B": "Pas passerelle"
+      // Tu pourras ajouter d'autres associations ici
+    };
+
+   function verifier() {
+      const selection = document.getElementById("terrain").value;
+      const resultat = document.getElementById("resultat");
+
+      if (!selection) {
+        resultat.textContent = "Veuillez sélectionner un terrain.";
+        resultat.style.color = "gray";
+        return;
+      }
+
+      const reponse = terrains[selection];
+      if (reponse) {
+        resultat.textContent = reponse;
+        resultat.style.color = (reponse === "Passerelle") ? "green" : "red";
+      } else {
+        resultat.textContent = "Terrain inconnu.";
+        resultat.style.color = "gray";
+      }
+    }
+  </script>
+</body>
+</html>
